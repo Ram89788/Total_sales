@@ -1,4 +1,4 @@
-padas
+pandas
 numpy
-math
--e
+sqlalchemy
+pymysql
