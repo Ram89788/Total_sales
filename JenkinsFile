@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    stages {
+        stage('Extract') {
+            steps {
+                echo 'Extracting data...'
+                sh 'python3 extract_data.py'
+            }
+        }
+        stage('Transform') {
+            steps {
+                echo 'Transforming data...'
+                sh 'python3 transform_data.py'
+            }
+        }
+        stage('Load') {
+            steps {
+                echo 'Loading data...'
+                sh 'python3 load_data.py'
+            }
+        }
+    }
+    post {
+        success {
+            echo 'ETL Pipeline completed successfully!'
+        }
+        failure {
+            echo 'ETL Pipeline failed. Check logs for errors.'
+        }
+    }
+}
